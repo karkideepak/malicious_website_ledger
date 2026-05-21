@@ -1,0 +1,27 @@
+
+BEGIN MaliciousWebsiteTracker
+
+FUNCTION Add_New_URL(input)
+    VALIDATE input.URL IS NOT empty
+    VALIDATE input.Analyst EXISTS
+
+    # Step 1: Defang URL
+    defanged_url = DEFANG(input.URL)
+
+    # Step 2: Create record
+    record.ID = input.Snow_Jira_ID
+    record.Analyst = input.Analyst
+    record.URL = defanged_url
+    record.Status = "New"
+    record.Severity = input.Severity (optional)
+    record.ThreatType = input.ThreatType (optional)
+    record.Source = input.Source (optional)
+    record.DateAdded = CURRENT_DATE
+    record.DateBlocked = NULL
+    record.FollowUp = input.FollowUp
+
+    STORE record IN database
+
+    RETURN record
+END FUNCTION
+
