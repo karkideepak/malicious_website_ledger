@@ -1,0 +1,24 @@
+FUNCTION Calculate_Duration(record)
+    IF record.DateBlocked IS NULL
+        RETURN 0
+
+    duration = CURRENT_DATE - record.DateBlocked
+    RETURN duration IN days
+END FUNCTION
+
+
+FUNCTION Daily_Review_Job()
+    FOR EACH record IN database
+
+        duration = Calculate_Duration(record)
+
+        # Step: Alert for long-running blocks
+        IF record.Status == "Blocked" AND duration > 30
+            SEND_ALERT("Review required for " + record.URL)
+
+        # Step: Auto-review old records
+        IF record.Status == "Pending Block" AND duration > 3
+            ESCALATE_TO_ANALYST(record)
+
+    END FOR
+END FUNCTION
