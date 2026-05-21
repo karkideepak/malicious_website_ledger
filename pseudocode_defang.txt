@@ -1,0 +1,6 @@
+FUNCTION DEFANG(url)
+    REPLACE "http://" WITH "http[:]" IN url
+    REPLACE "https://" WITH "https[:]" IN url
+    REPLACE "." WITH "[.]" IN domain portion
+    RETURN url
+END FUNCTION
