@@ -1,0 +1,12 @@
+Malicious website tracker
+
+Snow/Jira: this field is used to put the ticket number related with the incident either comes form service now or jira				
+Analyst:	the name of the analyst who added the URL to blocklist			
+URL: this field uses a code any url enter is automatically defang 				
+Status: this show the current status of the site				
+Duration: this shows the total number of dats since it has been blocked				
+Followed: this moight be the case number outside with vendor				
+
+				
+Snow/JIRA| Analyst| URL|Status|	Duration | FollowUp |
+INC1234|robot@company.com| http[:]//malicious[.]com	|Blocked |30 days | Case1234
