@@ -1,0 +1,20 @@
+FUNCTION Update_Status(record, new_status)
+    IF record NOT FOUND
+        RETURN ERROR "Record does not exist"
+
+    old_status = record.Status
+    record.Status = new_status
+
+    # Step: Handle lifecycle changes
+    IF new_status == "Blocked" AND record.DateBlocked IS NULL
+        record.DateBlocked = CURRENT_DATE
+
+    IF new_status == "Closed"
+        record.DateClosed = CURRENT_DATE
+
+    UPDATE record IN database
+
+    LOG "Status changed from old_status to new_status"
+
+    RETURN record
+END FUNCTION
