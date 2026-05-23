@@ -1,0 +1,5 @@
+Auto-defang — any URL entered is automatically converted to defanged format: https:// → hxxp[://] and dots → [.], so the URL is safe to share in tickets and reports.
+Fields covered — Snow/Jira ticket, analyst (with avatar initials), defanged URL, status pill, duration in days (auto-calculated from when it was added), and follow-up/case number.
+Status types — Blocked, Monitoring, Investigating, and Resolved, each with its own color-coded pill.
+Stats bar — live counts for total, blocked, monitoring, and resolved at the top.
+Add & delete — use the "Add entry" button to log new URLs; trash icon to remove entries. Search filters across ticket, analyst, URL, and follow-up fields.
