@@ -1,0 +1,71 @@
+<!-- Screen reader label -->
+<h2 class="sr-only">Malicious website tracker</h2>
+
+<!-- ── Main wrapper ── -->
+<div class="tracker">
+
+  <!-- Header: title + search + add button -->
+  <div class="header">
+    <div class="title-row">
+      <i class="ti ti-shield-exclamation" ...></i>
+      <span>Malicious website tracker</span>
+      <span class="badge-count" id="badge">0</span>   <!-- live count -->
+    </div>
+    <div class="controls">
+      <div class="search-wrap">
+        <i class="ti ti-search"></i>
+        <input type="text" id="search" placeholder="Search URL, ticket, analyst…">
+      </div>
+      <button class="btn-add" onclick="openModal()">+ Add entry</button>
+    </div>
+  </div>
+
+  <!-- Summary stat cards -->
+  <div class="stats">
+    <div class="stat"><div class="stat-label">Total tracked</div><div class="stat-val" id="s-total">0</div></div>
+    <div class="stat"><div class="stat-label">Blocked</div><div class="stat-val" id="s-blocked">0</div></div>
+    <div class="stat"><div class="stat-label">Monitoring</div><div class="stat-val" id="s-mon">0</div></div>
+    <div class="stat"><div class="stat-label">Resolved</div><div class="stat-val" id="s-res">0</div></div>
+  </div>
+
+  <!-- Data table -->
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="col-ticket">Snow / Jira</th>
+          <th class="col-analyst">Analyst</th>
+          <th class="col-url">URL (defanged)</th>
+          <th class="col-status">Status</th>
+          <th class="col-duration">Duration</th>
+          <th class="col-followup">Follow-up</th>
+          <th class="col-actions"></th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>   <!-- populated by JS -->
+    </table>
+  </div>
+</div>
+
+<!-- ── Add entry modal ── -->
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <h3>Add malicious site</h3>
+    <div class="form-row"><label>Snow / Jira ticket</label><input type="text" id="f-ticket"></div>
+    <div class="form-row"><label>Analyst email</label><input type="text" id="f-analyst"></div>
+    <div class="form-row"><label>URL (auto-defanged)</label><input type="text" id="f-url"></div>
+    <div class="form-row"><label>Status</label>
+      <select id="f-status">
+        <option>Blocked</option>
+        <option>Monitoring</option>
+        <option>Investigating</option>
+        <option>Resolved</option>
+      </select>
+    </div>
+    <div class="form-row"><label>Follow-up / case number</label><input type="text" id="f-followup"></div>
+    <div class="modal-actions">
+      <button onclick="closeModal()">Cancel</button>
+      <button onclick="saveEntry()">Add to blocklist</button>
+    </div>
+  </div>
+</div>
